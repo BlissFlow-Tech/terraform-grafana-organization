@@ -1,0 +1,26 @@
+{
+  "title": "${tenant} overview",
+  "uid": "${namespace}-overview",
+  "schemaVersion": 39,
+  "time": { "from": "now-6h", "to": "now" },
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Running pods",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "${metrics_uid}" },
+      "targets": [
+        { "refId": "A", "expr": "sum(kube_pod_status_phase{namespace=\"${namespace}\", phase=\"Running\"})" }
+      ]
+    },
+    {
+      "type": "logs",
+      "title": "Error logs",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "datasource": { "type": "loki", "uid": "${logs_uid}" },
+      "targets": [
+        { "refId": "A", "expr": "{namespace=\"${namespace}\"} |= \"error\"" }
+      ]
+    }
+  ]
+}
