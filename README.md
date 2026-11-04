@@ -7,7 +7,7 @@ Terraform module that creates an isolated Grafana organization with Mimir and Lo
 ```hcl
 module "grafana" {
   source  = "blissflow-tech/organization/grafana"
-  version = "~> 1.0"
+  version = "~> 1.1"
 
   tenant          = "acme"
   tenant_id       = "acme"
